@@ -4,10 +4,11 @@ ContactDB is a large-scale dataset of detailed contact maps recorded from functi
 [Paper (CVPR 2019 Oral)](https://contactdb.cc.gatech.edu/contactdb_paper.pdf) | [Supplementary Material](https://contactdb.cc.gatech.edu/contactdb_supp.pdf) | [Explore the dataset](https://contactdb.cc.gatech.edu/contactdb_explorer.html) | Poster | Slides
 ```
 @inproceedings{brahmbhatt2018contactdb,
-  title={ContactDB: Analyzing and Predicting Grasp Contact via Thermal Imaging,
+  title={{ContactDB: Analyzing and Predicting Grasp Contact via Thermal Imaging}},
   author={Samarth Brahmbhatt and Cusuh Ham and Charles C. Kemp and James Hays},
   booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year={2019}
+  year={2019},
+  note={\url{https://contactdb.cc.gatech.edu}}
 }
 ```
 
