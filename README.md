@@ -13,7 +13,7 @@ ContactDB is a large-scale dataset of detailed contact maps recorded from functi
 ```
 
 ## Dataset Download links:
-- Contact Maps (Textured Meshes) (13.5 GB)
+- [Contact Maps (Textured Meshes) (11.5 GB)](https://www.dropbox.com/sh/gzwk21ssod63xdl/AAAJ5StPMS2eid2MnZddBGsca?dl=0)
 - [Data (91 GB)](https://www.dropbox.com/sh/yjp1s73ollrfafi/AAATWS-1l-MzUcNtahR36fB-a?dl=0): RGB-D-Thermal images, object 6-DOF poses and image masks, textured meshes.
 - [3D Models (180 MB)](https://www.dropbox.com/sh/jdndpjhmq9pabgi/AADRBXURc97_tPsQKCy1Zj60a?dl=0)
 - [Voxelized Contact Maps (18 GB)](https://www.dropbox.com/sh/x5ivxw75tvf6tax/AADXw7KRWbH3eEofbbr6NQQga?dl=0): Data needed for training and evaluating the 3D deep learning models.
