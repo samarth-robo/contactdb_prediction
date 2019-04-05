@@ -45,7 +45,15 @@ First, check out the correct branch: `git checkout smcl`.
 - `Handoff` grasping instruction: `python eval.py --instruction handoff --config configs/pointnet.ini --checkpoint_dir data/checkpoints/handoff_pointnet_diversenet_release`
 
 ## Analyzing Contact Maps
-The analysis code is in the `master` branch: `git checkout master`.
+The analysis code is in the `master` branch: `git checkout master`. Analysis will require downloading the **full** ContactDB dataset, see [download instructions](https://github.com/samarth-robo/contactdb_utils). Let's say the dataset was downloaded at `CONTACTDB_DATASET_DIR`.
+
+- Calculate average contact areas for each object: `python analyze_contact_area.py --instruction use`. This will save the information in `data/use_contact_areas.pkl`, which can be plotted with `plot_contact_areas.py` to generate Figures 5(a) and 5(b) of the paper.
+
+- Analyze relationship between hand size and single-handed/bi-manual grasps: `python analyze_bimanual_grasps.py --instruction handoff --data_dir CONTACTDB_DATASET_DIR --object_names bowl,cube_large,cylinder_large,piggy_bank,pyramid_large,sphere_large,utah_teapot`. This should produce Figure 6 of the paper.
+
+- Clustering the contact maps: `python cluster_contact_maps.py --object_name camera --instruction use`. Add the `--symmetric` switch for symmetric objects like `wine_glass`. This should cluster the contact maps for that object and print out the cluster center and assignments. Useful for making Figure 3 of the paper.
+
+- Analyzing contact frequency of active areas: The cropped meshes of the active areas mentioned in Table 2 of the paper are saved in `data/active_areas`. To crop meshes yourself, see this [Open3D tutorial](http://www.open3d.org/docs/tutorial/Advanced/interactive_visualization.html#crop-geometry). After this, run e.g. for `camera`: `python analyze_active_areas.py --object camera --instruction use`. This will print out contact frequency for all all active areas of that object, and their union (frequency of touching area A `or` area B). `frequency(A and B) = frequency(A) + frequency(B) - frequency(A or B)`.
 
 ## Citation
 ```
