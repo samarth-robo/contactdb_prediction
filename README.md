@@ -21,28 +21,48 @@ We propose two methods to make diverse contact map predictions: [DiverseNet](htt
 ### DiverseNet Models
 First, check out the correct branch: `git checkout diversenet`.
 
-#### Voxel-grid 3D representation (VoxNet):
-- `Use` grasping instruction: `python eval.py --instruction use --config configs/voxnet.ini --checkpoint data/checkpoints/use_voxnet_diversenet_release/checkpoint_model_86_val_loss\=0.01107167.pth`
+Predict contact maps for the 'use' instruction, using the voxel grid 3D representation:
 
-- `Handoff` grasping instruction: `python eval.py --instruction handoff --config configs/voxnet.ini --checkpoint data/checkpoints/handoff_voxnet_diversenet_release/checkpoint_model_167_val_loss\=0.01268427.pth`
+`python eval.py --instruction use --config configs/voxnet.ini --checkpoint data/checkpoints/use_voxnet_diversenet_release/checkpoint_model_86_val_loss\=0.01107167.pth`
 
-#### Pointcloud 3D representation (PointNet):
-- `Use` grasping instruction: `python eval.py --instruction use --config configs/pointnet.ini --checkpoint data/checkpoints/use_pointnet_diversenet_release/checkpoint_model_29_val_loss\=0.6979221.pth`
+In general, the command is
 
-- `Handoff` grasping instruction: `python eval.py --instruction handoff --config configs/pointnet.ini --checkpoint data/checkpoints/handoff_pointnet_diversenet_release/checkpoint_model_745_val_loss\=0.5969936.pth`
+`python eval.py --instruction <use | handoff> --config <configs/voxnet.ini | configs/pointnet.ini> --checkpoint <checkpoint filename>`
+
+Use the following checkpoints:
+
+|      Method        |                                             Checkpoint                                            |
+|:------------------:|:-------------------------------------------------------------------------------------------------:|
+|   Use - VoxNet     | data/checkpoints/use_voxnet_diversenet_release/checkpoint_model_86_val_loss\=0.01107167.pth       |
+|  Use - PointNet    | data/checkpoints/use_pointnet_diversenet_release/checkpoint_model_29_val_loss\=0.6979221.pth      |
+| Handoff - VoxNet   | data/checkpoints/handoff_voxnet_diversenet_release/checkpoint_model_167_val_loss\=0.01268427.pth  |
+| Handoff - PointNet | data/checkpoints/handoff_pointnet_diversenet_release/checkpoint_model_745_val_loss\=0.5969936.pth |
 
 ### sMCL Models
 First, check out the correct branch: `git checkout smcl`.
 
-#### Voxel-grid 3D representation (VoxNet):
-- `Use` grasping instruction: `python eval.py --instruction use --config configs/voxnet.ini --checkpoint_dir data/checkpoints/use_voxnet_diversenet_release`
+Predict contact maps for the 'use' instruction, using the voxel grid 3D representation:
 
-- `Handoff` grasping instruction: `python eval.py --instruction handoff --config configs/voxnet.ini --checkpoint_dir data/checkpoints/handoff_voxnet_diversenet_release`
+`python eval.py --instruction use --config configs/voxnet.ini --checkpoint_dir data/checkpoints/use_voxnet_smcl_release`
 
-#### Pointcloud 3D representation (PointNet):
-- `Use` grasping instruction: `python eval.py --instruction use --config configs/pointnet.ini --checkpoint_dir data/checkpoints/use_pointnet_diversenet_release`
+In general, the command is
 
-- `Handoff` grasping instruction: `python eval.py --instruction handoff --config configs/pointnet.ini --checkpoint_dir data/checkpoints/handoff_pointnet_diversenet_release`
+`python eval.py --instruction <use | handoff> --config <configs/voxnet.ini | configs/pointnet.ini> --checkpoint_dir <checkpoint directory>`
+
+Use the following checkpoint directories:
+
+|       Method       |           Checkpoint          |
+|:------------------:|:-----------------------------:|
+|    Use - VoxNet    | use_voxnet_smcl_release       |
+|   Use - PointNet   | use_pointnet_smcl_release     |
+|  Handoff - VoxNet  | handoff_voxnet_smcl_release   |
+| Handoff - PointNet | handoff_pointnet_smcl_release |
+
+## Training your own models
+
+The base command is
+
+`python train_val.py --instruction <use | handoff> --config <configs/voxnet.ini | configs/pointnet.ini> [--device <GPU ID> --checkpoint_dir <directory where checkpints are saved> --data_dir <directory where data is downloaded>]`
 
 ## Analyzing Contact Maps
 The analysis code is in the `master` branch: `git checkout master`. Analysis will require downloading the **full** ContactDB dataset, see [download instructions](https://github.com/samarth-robo/contactdb_utils). Let's say the dataset was downloaded at `CONTACTDB_DATASET_DIR`.
