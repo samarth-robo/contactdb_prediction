@@ -60,7 +60,7 @@ def generate_binvoxes(models_dir, N_voxels=64, debug_mode=False):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument('--models_dir',
-    default=osp.join('~', 'deepgrasp_data', 'models'))
+    default=osp.join('data', 'object_models'))
   parser.add_argument('--N_voxels', default=64, type=int,
       help='Size of voxelgrid used by the ML algorithm')
   parser.add_argument('--debug', action='store_true')
