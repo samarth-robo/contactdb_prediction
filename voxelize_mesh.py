@@ -168,7 +168,7 @@ if __name__ == '__main__':
   parser.add_argument('--output_dir',
       default=osp.join('data', 'voxelized_meshes'))
   parser.add_argument('--models_dir',
-    default=osp.join('~', 'deepgrasp_data', 'models'))
+    default=osp.join('data', 'object_models'))
   parser.add_argument('--hollow', action='store_true')
   parser.add_argument('--sigmoid_a', default=0.05, type=float)
   parser.add_argument('--test_only', action='store_true',
