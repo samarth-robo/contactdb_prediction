@@ -11,61 +11,11 @@ Please see [contactdb_utils](https://github.com/samarth-robo/contactdb_utils) fo
 1. Download and install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) (Python 3.x version).
 2. Download this repository: `git clone https://github.com/samarth-robo/contactdb_prediction.git`. Commands for the following steps should be executed from the `contactdb_prediction` directory.
 2. Create the `contactdb_prediction` environment: `conda create env -f environment.yml`, and activate it: `source activate contactdb_prediction`.
-3. Download the voxelized contact maps from [this Dropbox link](https://www.dropbox.com/sh/x5ivxw75tvf6tax/AADXw7KRWbH3eEofbbr6NQQga?dl=0) (17.9 GB). If the download location is `CONTACTDB_DATA_DIR`, make a symlink to it: `ln -s CONTACTDB_DATA_DIR data/voxlelized_meshes`.
-4. Download the trained models from [this Dropbox link](https://www.dropbox.com/sh/3kvyhin9030mdzo/AAC_eYOVAvXMRhsAJsDlL_soa?dl=0) (700 MB). If the download location is `CONTACTDB_MODELS_DIR`, make a symlink to it: `ln -s CONTACTDB_MODELS_DIR data/checkpoints`.
-5. (Optional, for comparison purposes): Download the predicted contact maps from [this Dropbox link](https://www.dropbox.com/sh/zrpgtoycbik0iq3/AAAHMyzs9Lc2kH8UPZttRCmGa?dl=0).
-
-## Predicting Contact Maps
-We propose two methods to make diverse contact map predictions: [DiverseNet](http://openaccess.thecvf.com/content_cvpr_2018/papers/Firman_DiverseNet_When_One_CVPR_2018_paper.pdf) and [Stochastic Multiple Choice Learning (sMCL)](https://papers.nips.cc/paper/6270-stochastic-multiple-choice-learning-for-training-diverse-deep-ensembles). Their code is in **separate branches**.
-
-### DiverseNet Models
-First, check out the correct branch: `git checkout diversenet`.
-
-Predict contact maps for the 'use' instruction, using the voxel grid 3D representation:
-
-`python eval.py --instruction use --config configs/voxnet.ini --checkpoint data/checkpoints/use_voxnet_diversenet_release/checkpoint_model_86_val_loss\=0.01107167.pth`
-
-In general, the command is
-
-`python eval.py --instruction <use | handoff> --config <configs/voxnet.ini | configs/pointnet.ini> --checkpoint <checkpoint filename>`
-
-Use the following checkpoints:
-
-|      Method        |                                             Checkpoint                                            |
-|:------------------:|:-------------------------------------------------------------------------------------------------:|
-|   Use - VoxNet     | data/checkpoints/use_voxnet_diversenet_release/checkpoint_model_86_val_loss\=0.01107167.pth       |
-|  Use - PointNet    | data/checkpoints/use_pointnet_diversenet_release/checkpoint_model_29_val_loss\=0.6979221.pth      |
-| Handoff - VoxNet   | data/checkpoints/handoff_voxnet_diversenet_release/checkpoint_model_167_val_loss\=0.01268427.pth  |
-| Handoff - PointNet | data/checkpoints/handoff_pointnet_diversenet_release/checkpoint_model_745_val_loss\=0.5969936.pth |
-
-### sMCL Models
-First, check out the correct branch: `git checkout smcl`.
-
-Predict contact maps for the 'use' instruction, using the voxel grid 3D representation:
-
-`python eval.py --instruction use --config configs/voxnet.ini --checkpoint_dir data/checkpoints/use_voxnet_smcl_release`
-
-In general, the command is
-
-`python eval.py --instruction <use | handoff> --config <configs/voxnet.ini | configs/pointnet.ini> --checkpoint_dir <checkpoint directory>`
-
-Use the following checkpoint directories:
-
-|       Method       |           Checkpoint          |
-|:------------------:|:-----------------------------:|
-|    Use - VoxNet    | use_voxnet_smcl_release       |
-|   Use - PointNet   | use_pointnet_smcl_release     |
-|  Handoff - VoxNet  | handoff_voxnet_smcl_release   |
-| Handoff - PointNet | handoff_pointnet_smcl_release |
-
-## Training your own models
-
-The base command is
-
-`python train_val.py --instruction <use | handoff> --config <configs/voxnet.ini | configs/pointnet.ini> [--device <GPU ID> --checkpoint_dir <directory where checkpints are saved> --data_dir <directory where data is downloaded>]`
+This branch has code for **analyzing contact maps** (Section 4 of the paper), and for preprocessing them for ML experiments. For PyTorch code to predict contact maps, see the `diversenet` and `smcl` branches.
 
 ## Analyzing Contact Maps
-The analysis code is in the `master` branch: `git checkout master`. Analysis will require downloading the **full** ContactDB dataset, see [download instructions](https://github.com/samarth-robo/contactdb_utils). Let's say the dataset was downloaded at `CONTACTDB_DATASET_DIR`.
+
+Download the contact maps from [this Dropbox link](https://www.dropbox.com/sh/gzwk21ssod63xdl/AAAJ5StPMS2eid2MnZddBGsca?dl=0) (11.2 GB). If the download location is `CONTACTDB_DATA_DIR`, make a symlink to it: `ln -s CONTACTDB_DATA_DIR data/contactmaps`.
 
 - Calculate average contact areas for each object: `python analyze_contact_area.py --instruction use`. This will save the information in `data/use_contact_areas.pkl`, which can be plotted with `plot_contact_areas.py` to generate Figures 5(a) and 5(b) of the paper.
 
@@ -74,6 +24,20 @@ The analysis code is in the `master` branch: `git checkout master`. Analysis wil
 - Clustering the contact maps: `python cluster_contact_maps.py --object_name camera --instruction use`. Add the `--symmetric` switch for symmetric objects like `wine_glass`. This should cluster the contact maps for that object and print out the cluster center and assignments. Useful for making Figure 3 of the paper.
 
 - Analyzing contact frequency of active areas: The cropped meshes of the active areas mentioned in Table 2 of the paper are saved in `data/active_areas`. To crop meshes yourself, see this [Open3D tutorial](http://www.open3d.org/docs/tutorial/Advanced/interactive_visualization.html#crop-geometry). After this, run e.g. for `camera`: `python analyze_active_areas.py --object camera --instruction use`. This will print out contact frequency for all all active areas of that object, and their union (frequency of touching area A `or` area B). `frequency(A and B) = frequency(A) + frequency(B) - frequency(A or B)`.
+
+## Preprocessing Data
+This section describes how we preprocessed ContactDB data for the contactmap prediction models.
+
+First, download the 3D models of the objects from [this Dropbox link](https://www.dropbox.com/sh/5rnxri7dzh9ciy3/AABXgwqpmBtlXgQc8aWBVl8aa?dl=0) (82 MB). If the download location is `CONTACTDB_OBJ_MODELS_DIR`, make a symlink to it: `ln -s CONTACTDB_OBJ_MODELS_DIR data/object_models`.
+
+We use Patrick Min's [binvox](http://www.patrickmin.com/binvox/) to voxelize the object meshes for VoxNet models. Generate the voxelgrids using `python generate_binvoxes.py`. The default parameters should work fine.
+
+Next, we need to generate the voxelgrids and pointclouds with associated contact textures for the prediction models. Create the directory for storing them: `mkdir data/voxelized_meshes` (stores both the pointclouds and voxelgrids).
+
+Generate the voxelgrids using: `python voxelize_mesh.py --instruction <use | handoff>`, and
+
+the pointclouds using: `python voxelize_mesh.py --instruction <use | handoff> --hollow`.
+
 
 ## Citation
 ```
