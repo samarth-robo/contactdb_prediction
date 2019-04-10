@@ -28,7 +28,7 @@ In general, the command is
 
 Use the following checkpoint directories:
 
-|       Method       |           Checkpoint          |
+|       Method       |           Checkpoint Dir      |
 |:------------------:|:-----------------------------:|
 |    Use - VoxNet    | use_voxnet_smcl_release       |
 |   Use - PointNet   | use_pointnet_smcl_release     |
