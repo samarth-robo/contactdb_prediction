@@ -1,0 +1,20 @@
+name: contact_heatmaps_ml
+
+channels:
+  - conda-forge
+  - pytorch
+  - open3d-admin
+  - menpo
+
+dependencies:
+  - open3d
+  - trimesh
+  - pytorch
+  - torchvision
+  - matplotlib
+  - ignite
+  - opencv
+  - pip
+  - pip:
+      - visdom
+      - transforms3d
