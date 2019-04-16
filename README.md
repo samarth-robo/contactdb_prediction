@@ -32,8 +32,7 @@ You can add the `--show object <pan | mug | wine_glass>` flag to show the 10 div
 $ python eval.py --instruction use --config configs/voxnet.ini --checkpoint data/checkpoints/use_voxnet_diversenet_release/checkpoint_model_86_val_loss\=0.01107167.pth --show_object mug
 mug loss = 0.0706
 ```
-<img alt="use-voxnet-diversenet-mug0" src="use_voxnet_diversenet_mug_prediction0.png" width="100">
-<img alt="use-voxnet-diversenet-mug1" src="use_voxnet_diversenet_mug_prediction1.png" width="100">
+<img alt="use-voxnet-diversenet-mug0" src="use_voxnet_diversenet_mug_prediction0.png" width="150"><img alt="use-voxnet-diversenet-mug1" src="use_voxnet_diversenet_mug_prediction1.png" width="150">
 
 In general, the command is
 
