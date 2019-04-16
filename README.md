@@ -16,11 +16,61 @@ Please see [contactdb_utils](https://github.com/samarth-robo/contactdb_utils) fo
 5. (Optional, for comparison purposes): Download the predicted contact maps from [this Dropbox link](https://www.dropbox.com/sh/zrpgtoycbik0iq3/AAAHMyzs9Lc2kH8UPZttRCmGa?dl=0).
 
 ## Predicting Contact Maps
-We propose two methods to make diverse contact map predictions: [DiverseNet](http://openaccess.thecvf.com/content_cvpr_2018/papers/Firman_DiverseNet_When_One_CVPR_2018_paper.pdf) and [Stochastic Multiple Choice Learning (sMCL)](https://papers.nips.cc/paper/6270-stochastic-multiple-choice-learning-for-training-diverse-deep-ensembles). This branch has code for the **sMCL models**. Checkout the `diversenet` branch for DiverseNet code.
+We propose two methods to make diverse contact map predictions: [DiverseNet](http://openaccess.thecvf.com/content_cvpr_2018/papers/Firman_DiverseNet_When_One_CVPR_2018_paper.pdf) and [Stochastic Multiple Choice Learning (sMCL)](https://papers.nips.cc/paper/6270-stochastic-multiple-choice-learning-for-training-diverse-deep-ensembles). This branch has code for the **sMCL models**. Checkout the [diversenet](https://github.com/samarth-robo/contactdb_prediction/tree/diversenet) branch for DiverseNet code.
 
 Predict contact maps for the 'use' instruction, using the voxel grid 3D representation:
 
-`python eval.py --instruction use --config configs/voxnet.ini --checkpoint_dir data/checkpoints/use_voxnet_smcl_release`
+```
+$ python eval.py --instruction use --config configs/voxnet.ini --checkpoint_dir data/checkpoints/use_voxnet_smcl_release
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_4_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_7_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_0_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_2_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_1_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_8_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_6_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_3_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_5_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_9_71_val_loss=0.06387464.pth
+1 / 148
+11 / 148
+21 / 148
+31 / 148
+41 / 148
+51 / 148
+61 / 148
+71 / 148
+81 / 148
+91 / 148
+101 / 148
+111 / 148
+121 / 148
+131 / 148
+141 / 148
+pan loss = 0.0825
+mug loss = 0.3251
+wine_glass loss = 0.1106
+```
+
+You can also add the `--show_object <mug | pan | wine_glass>` option to show the 10 diverse predictions:
+```
+python eval.py --instruction use --config configs/voxnet.ini --checkpoint_dir data/checkpoints/use_voxnet_smcl_release --show_object pan
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_4_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_7_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_0_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_2_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_1_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_8_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_6_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_3_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_5_71_val_loss=0.06387464.pth
+Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_9_71_val_loss=0.06387464.pth
+1 / 148
+Warn: error value is not accurate, remove the --show_object flag to compute accurate error
+pan error = 0.0757
+```
+<img src="use_voxnet_smcl_pan_prediction0.png" width="150"><img src="use_voxnet_smcl_pan_prediction1.png" width="150">
+
 
 In general, the command is
 
@@ -34,6 +84,8 @@ Use the following checkpoint directories:
 |   Use - PointNet   | use_pointnet_smcl_release     |
 |  Handoff - VoxNet  | handoff_voxnet_smcl_release   |
 | Handoff - PointNet | handoff_pointnet_smcl_release |
+
+PointNet models will exhibit some variability in the predictions because of random sampling of points.
 
 ## Training your own models
 
