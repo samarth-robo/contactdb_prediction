@@ -20,7 +20,20 @@ We propose two methods to make diverse contact map predictions: [DiverseNet](htt
 
 Predict contact maps for the 'use' instruction, using the voxel grid 3D representation:
 
-`python eval.py --instruction use --config configs/voxnet.ini --checkpoint data/checkpoints/use_voxnet_diversenet_release/checkpoint_model_86_val_loss\=0.01107167.pth`
+```
+$ python eval.py --instruction use --config configs/voxnet.ini --checkpoint data/checkpoints/use_voxnet_diversenet_release/checkpoint_model_86_val_loss\=0.01107167.pth
+pan loss = 0.0512
+mug loss = 0.0706
+wine_glass loss = 0.1398
+```
+
+You can add the `--show object <pan | mug | wine_glass>` flag to show the 10 diverse predictions:
+```
+$ python eval.py --instruction use --config configs/voxnet.ini --checkpoint data/checkpoints/use_voxnet_diversenet_release/checkpoint_model_86_val_loss\=0.01107167.pth --show_object mug
+mug loss = 0.0706
+```
+![use-voxnet-diversenet-mug0](use_voxnet_diversenet_mug_prediction0.png)
+![use-voxnet-diversenet-mug1](use_voxnet_diversenet_mug_prediction1.png)
 
 In general, the command is
 
