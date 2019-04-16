@@ -97,7 +97,7 @@ def eval(data_dir, instruction, checkpoint_filename, config_filename, device_id,
       tex_preds = model(geom)
 
     loss, match_indices = loss_fn(tex_preds, tex_targs)
-    print('{:s} loss = {:.4f}'.format(object_name, loss.item()))
+    print('{:s} error = {:.4f}'.format(object_name, loss.item()))
 
     geom      = geom.cpu().numpy().squeeze()
     tex_preds = tex_preds.cpu().numpy().squeeze()
