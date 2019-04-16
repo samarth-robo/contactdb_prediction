@@ -47,9 +47,9 @@ Loaded model from data/checkpoints/use_voxnet_smcl_release/checkpoint_model_9_71
 121 / 148
 131 / 148
 141 / 148
-pan loss = 0.0825
-mug loss = 0.3251
-wine_glass loss = 0.1106
+pan error = 0.0825
+mug error = 0.3251
+wine_glass error = 0.1106
 ```
 
 You can also add the `--show_object <mug | pan | wine_glass>` option to show the 10 diverse predictions:
