@@ -134,10 +134,12 @@ def eval(data_dir, instruction, checkpoint_dir, config_filename, device_id,
         show_voxel_texture(geom, tex_preds)
       else:
         raise NotImplementedError
+      print('Warn: error value is not accurate, remove the --show_object flag'
+          ' to compute accurate error')
       break
   
   for object_name, object_losses in losses.items():
-    print('{:s} loss = {:.4f}'.format(object_name, np.mean(object_losses)))
+    print('{:s} error = {:.4f}'.format(object_name, np.mean(object_losses)))
   
   if save_preds:
     output_data = {
