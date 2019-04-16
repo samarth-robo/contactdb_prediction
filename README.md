@@ -16,7 +16,7 @@ Please see [contactdb_utils](https://github.com/samarth-robo/contactdb_utils) fo
 5. (Optional, for comparison purposes): Download the predicted contact maps from [this Dropbox link](https://www.dropbox.com/sh/zrpgtoycbik0iq3/AAAHMyzs9Lc2kH8UPZttRCmGa?dl=0).
 
 ## Predicting Contact Maps
-We propose two methods to make diverse contact map predictions: [DiverseNet](http://openaccess.thecvf.com/content_cvpr_2018/papers/Firman_DiverseNet_When_One_CVPR_2018_paper.pdf) and [Stochastic Multiple Choice Learning (sMCL)](https://papers.nips.cc/paper/6270-stochastic-multiple-choice-learning-for-training-diverse-deep-ensembles). This branch has code for the **diversenet models**. Checkout the `smcl` branch for sMCL code.
+We propose two methods to make diverse contact map predictions: [DiverseNet](http://openaccess.thecvf.com/content_cvpr_2018/papers/Firman_DiverseNet_When_One_CVPR_2018_paper.pdf) and [Stochastic Multiple Choice Learning (sMCL)](https://papers.nips.cc/paper/6270-stochastic-multiple-choice-learning-for-training-diverse-deep-ensembles). This branch has code for the **diversenet models**. Checkout the [smcl](https://github.com/samarth-robo/contactdb_prediction/tree/smcl) branch for sMCL code.
 
 Predict contact maps for the 'use' instruction, using the voxel grid 3D representation:
 
