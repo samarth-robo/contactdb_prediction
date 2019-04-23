@@ -1,4 +1,7 @@
 # [ContactDB: Analyzing and Predicting Grasp Contact via Thermal Imaging](https://contactdb.cc.gatech.edu)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/contactdb-analyzing-and-predicting-grasp/human-grasp-contact-prediction-on-contactdb)](https://paperswithcode.com/sota/human-grasp-contact-prediction-on-contactdb?p=contactdb-analyzing-and-predicting-grasp)
+
 This repository contains code to analyze and predict contact maps for human grasping, presented in the paper 
 
 [ContactDB: Analyzing and Predicting Grasp Contact via Thermal Imaging](https://contactdb.cc.gatech.edu) - [Samarth Brahmbhatt](https://samarth-robo.github.io/), [Cusuh Ham](https://cusuh.github.io/), [Charles C. Kemp](http://ckemp.bme.gatech.edu/), and [James Hays](https://www.cc.gatech.edu/~hays/), CVPR 2019
