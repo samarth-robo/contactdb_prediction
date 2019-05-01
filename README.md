@@ -5,7 +5,7 @@ This repository contains code to analyze and predict contact maps for human gras
 
 [Paper (CVPR 2019 Oral)](https://arxiv.org/abs/1904.06830) | [Explore the dataset](https://contactdb.cc.gatech.edu/contactdb_explorer.html) | Poster | Slides
 
-Please see [contactdb_utils](https://github.com/samarth-robo/contactdb_utils) for access to raw ContactDB data, and code to process it.
+Please see [contactdb_utils](https://github.com/samarth-robo/contactdb_utils) for access to raw ContactDB data, and code to process it; [analysis branch](https://github.com/samarth-robo/contactdb_prediction/tree/smcl) for code to generate various analysis graphs from the paper.
 
 ## Setup
 1. Download and install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) (Python 3.x version).
