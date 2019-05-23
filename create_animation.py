@@ -1,3 +1,10 @@
+'''
+This script generates screenshots of the object rotating around the up vector
+in the animation_images directory.
+You can upload them to online services like https://ezgif.com/maker
+to create animation GIFs
+'''
+
 import os
 import open3d
 import numpy as np
@@ -10,12 +17,13 @@ osp = os.path
 
 
 def animate(geomi, suffix=None):
+  # adjust this transform as needed
   T = np.eye(4)
   T[:3, :3] = txe.euler2mat(np.deg2rad(-90), np.deg2rad(0), np.deg2rad(0))
   geom.transform(T)
 
   animate.count = -1
-  animate.step = 50.0
+  animate.step = 50.0  # simulates mouse cursor movement by 50 pixels
   animate.radian_per_pixel = 0.003
 
   def move_forward(vis):
@@ -37,14 +45,17 @@ def animate(geomi, suffix=None):
 
       ctr.rotate(glb.step, 0)
     else:
-      ctr.scale(10)
+      # no effect, adjust as needed. Higher values cause the view to zoom out
+      ctr.scale(1)  
     glb.count += 1
 
   open3d.draw_geometries_with_animation_callback([geom], move_forward)
 
 
 if __name__ == '__main__':
-  if True:
+  MESH = True
+  # for a textured mesh model (e.g. ContactDB contactmap)
+  if MESH:
     filename = 'data/contactdb_contactmaps/42_handoff_cylinder_large.ply'
     filename = osp.expanduser(filename)
     geom = open3d.read_triangle_mesh(filename)
@@ -56,7 +67,7 @@ if __name__ == '__main__':
     c = plt.cm.inferno(c)[:, :3]
     geom.vertex_colors = open3d.Vector3dVector(c)
     animate(geom)
-  else:
+  else:  # for the voxelgrid and pointcloud predictions made by ContactDB models
     filename = 'data/contactdb_predictions/camerav2_use_voxnet_diversenet_preds.pkl'
     filename = osp.expanduser(filename)
     with open(filename, 'rb') as f:
