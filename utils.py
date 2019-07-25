@@ -39,12 +39,12 @@ def texture_proc(colors, a=0.05, invert=False):
   return colors
 
 
-def discretize_texture(c, thresh=0.4):
+def discretize_texture(c, thresh=0.4, have_dontcare=True):
   idx = c > 0
   if sum(idx) == 0:
     return c
   ci = c[idx]
-  c[:] = 2
+  c[:] = 2 if have_dontcare else 0
   ci = ci > thresh
   c[idx] = ci
   return c
