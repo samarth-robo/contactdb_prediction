@@ -6,9 +6,10 @@ channels:
   - open3d-admin
 
 dependencies:
+  - python=3.6.6
   - open3d
   - trimesh
-  - pytorch
+  - pytorch=0.4.1
   - torchvision
   - matplotlib
   - ignite
