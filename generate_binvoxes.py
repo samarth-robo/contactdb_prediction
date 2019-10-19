@@ -62,7 +62,7 @@ def generate_binvoxes(models_dir, N_voxels, hollow, debug_mode=False):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument('--models_dir',
-    default=osp.join('~', 'deepgrasp_data', 'models'))
+    default=osp.join('data', 'object_models'))
   parser.add_argument('--hollow', action='store_true')
   parser.add_argument('--N_voxels', default=64, type=int,
       help='Size of voxelgrid used by the ML algorithm')
@@ -71,4 +71,4 @@ if __name__ == '__main__':
 
   logging.basicConfig(level=logging.INFO)
   generate_binvoxes(osp.expanduser(args.models_dir), N_voxels=args.N_voxels,
-      hollow=hollow, debug_mode=args.debug)
+      hollow=args.hollow, debug_mode=args.debug)
