@@ -51,8 +51,13 @@ Use the following checkpoints:
 | Handoff - PointNet | data/checkpoints/handoff_pointnet_diversenet_release/checkpoint_model_745_val_loss\=0.5969936.pth |
 
 ## Training your own models
+Start the [`visdom`](https://github.com/facebookresearch/visdom) server
+```
+$ source activate contactdb_prediction
+$ visdom
+```
 
-The base command is
+The base training command is
 
 `python train_val.py --instruction <use | handoff> --config <configs/voxnet.ini | configs/pointnet.ini> [--device <GPU ID> --checkpoint_dir <directory where checkpints are saved> --data_dir <directory where data is downloaded>]`
 
