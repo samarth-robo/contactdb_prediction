@@ -28,7 +28,7 @@ Download the contact maps from [this Dropbox link](https://www.dropbox.com/sh/gz
 ## Preprocessing Data
 This section describes how we preprocessed ContactDB data for the contactmap prediction models.
 
-- First, download the 3D models of the objects from [this Dropbox link](https://www.dropbox.com/sh/5rnxri7dzh9ciy3/AABXgwqpmBtlXgQc8aWBVl8aa?dl=0) (82 MB). If the download location is `CONTACTDB_OBJ_MODELS_DIR`, make a symlink to it: `ln -s CONTACTDB_OBJ_MODELS_DIR data/object_models`.
+- First, collect the 3D models of the objects from [contact maps](https://www.dropbox.com/sh/gzwk21ssod63xdl/AAAJ5StPMS2eid2MnZddBGsca?dl=0) contact maps. If their location is `CONTACTDB_OBJ_MODELS_DIR`, make a symlink to it: `ln -s CONTACTDB_OBJ_MODELS_DIR data/object_models`.
 
 - We use Patrick Min's [binvox](http://www.patrickmin.com/binvox/) to voxelize the object meshes for VoxNet models. Generate the voxelgrids using `python generate_binvoxes.py`. The default parameters should work fine.
 
