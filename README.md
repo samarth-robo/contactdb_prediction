@@ -1,3 +1,5 @@
+[8 Sept 2024] I am aware the data download links are broken. the fix for this is being tracked in [this issue](https://github.com/samarth-robo/contactdb_prediction/issues/7).
+
 # [ContactDB: Analyzing and Predicting Grasp Contact via Thermal Imaging](https://contactdb.cc.gatech.edu)
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/contactdb-analyzing-and-predicting-grasp/human-grasp-contact-prediction-on-contactdb)](https://paperswithcode.com/sota/human-grasp-contact-prediction-on-contactdb?p=contactdb-analyzing-and-predicting-grasp)
